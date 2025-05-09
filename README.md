@@ -1,73 +1,128 @@
-# Web-based TurtleBot3 Teleoperation
+# TurtleBot3 Web Teleoperation Package
 
-A ROS2 package that provides web-based teleoperation for TurtleBot3 (burger model) using a virtual joystick interface.
+A ROS 2 package that provides a web-based interface for teleoperating a TurtleBot3 robot. The interface includes both joystick and keyboard controls, real-time odometry display, and 3D robot visualization.
 
 ## Features
 
-- Web-based virtual joystick control
-- Real-time robot control via WebSocket
-- Simple and intuitive user interface
-- Compatible with TurtleBot3 burger model
+- **Dual Control Modes**:
+  - Virtual Joystick Control
+  - Keyboard Control (WASD + Space)
+  - Easy switching between control modes
+- **Real-time Odometry Display**:
+  - Position (X, Y, Z)
+  - Linear Velocity
+  - Angular Velocity
+- **3D Robot Visualization**:
+  - Live URDF model viewer
+  - Interactive camera controls
+- **Web-based Interface**:
+  - Modern, responsive design
+  - Real-time updates
+  - Cross-platform compatibility
 
-## Requirements
+## Prerequisites
 
-- ROS2 (tested on Humble)
-- Python 3.x
-- Python packages:
-  - rclpy
-  - websockets
+- ROS 2 (tested on Humble)
+- Python 3.10 or higher
+- TurtleBot3 packages
+- Web browser with WebSocket support
 
 ## Installation
 
-1. Clone this repository into your ROS2 workspace:
+1. Clone the repository:
 ```bash
 cd ~/ros2_ws/src
-git clone <your-repo-url>
+git clone <your-repo-url> web_teleop_app_pkg
 ```
 
 2. Install dependencies:
 ```bash
-pip3 install websockets
+cd ~/ros2_ws
+rosdep install --from-paths src --ignore-src -r -y
 ```
 
 3. Build the package:
 ```bash
-cd ~/ros2_ws
 colcon build --packages-select web_teleop_app_pkg
 ```
 
-## Usage
-
-1. Source your ROS2 workspace:
+4. Source the workspace:
 ```bash
 source ~/ros2_ws/install/setup.bash
 ```
 
-2. Launch the web teleoperation node:
+## Usage
+
+1. Launch the web teleoperation interface:
 ```bash
 ros2 launch web_teleop_app_pkg web_teleop_app.launch.py
 ```
 
-3. Open your web browser and navigate to:
+2. Open your web browser and navigate to:
 ```
-http://localhost:8080
+http://localhost:8000
 ```
 
-4. Use the virtual joystick to control your TurtleBot3:
-   - Move the joystick up/down for forward/backward motion
-   - Move left/right for turning
-   - Release to stop the robot
+3. Control the robot:
+   - Use the virtual joystick for intuitive control
+   - Click "Switch to Keyboard Control" to use WASD keys
+   - Monitor robot position and velocity in the odometry display
+   - View the robot's 3D model in the URDF viewer
+
+## Control Modes
+
+### Joystick Control
+- Drag the joystick to control the robot
+- Release to stop
+- Direction and distance from center determine speed and turning
+
+### Keyboard Control
+- W: Move forward
+- S: Move backward
+- A: Turn left
+- D: Turn right
+- Space: Stop
 
 ## Architecture
 
-- Frontend: HTML/JavaScript web interface with virtual joystick
-- Backend: ROS2 node with WebSocket server
-- Communication: WebSocket for real-time control commands
+The package consists of three main components:
+
+1. **Web Frontend** (`web_app/`):
+   - HTML/CSS/JavaScript interface
+   - Virtual joystick implementation
+   - 3D visualization using Three.js
+   - Real-time odometry display
+
+2. **WebSocket Backend** (`web_teleop_app_pkg/websocket_backend.py`):
+   - ROS 2 node for robot control
+   - WebSocket server for frontend communication
+   - Odometry data handling
+   - Command velocity publishing
+
+3. **Launch System** (`launch/web_teleop_app.launch.py`):
+   - Starts the web server
+   - Launches the WebSocket backend
+   - Optional TurtleBot3 simulation
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 
-MIT License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Author
+## Authors
 
-krissagar95 
+- krissagar95 (Krishna_Sagar@artc.a-star.edu.sg)
+
+## Acknowledgments
+
+- TurtleBot3 team for the robot platform
+- ROS 2 community for the framework
+- Three.js for 3D visualization
+- NippleJS for the virtual joystick 

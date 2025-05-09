@@ -13,7 +13,7 @@ setup(
         ('share/web_teleop_app_pkg/launch', ['launch/web_teleop_app.launch.py']),
         ('share/web_teleop_app_pkg/web_app', [
             'web_app/index.html',
-            'web_app/joystick.js',
+            'web_app/main.js',
         ]),
         ('share/web_teleop_app_pkg/web_teleop_app_pkg', [
             'web_teleop_app_pkg/websocket_backend.py',
