@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TurtleBot3 Web Joystick Teleop</title>
+    <style>
+        body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #f5f5f5; }
+        #joystick-zone { width: 300px; height: 300px; margin: 40px auto; background: #fff; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; }
+        h1 { font-family: sans-serif; color: #333; }
+        #status { margin-top: 20px; font-family: monospace; color: #00796b; }
+    </style>
+    <!-- NippleJS (joystick) -->
+    <script src="https://cdn.jsdelivr.net/npm/nipplejs@0.9.0/dist/nipplejs.min.js"></script>
+    <!-- ROSLIBJS -->
+    <script src="https://cdn.jsdelivr.net/npm/roslib/build/roslib.min.js"></script>
+</head>
+<body>
+    <h1>TurtleBot3 Web Joystick Teleop</h1>
+    <div id="joystick-zone"></div>
+    <div id="status">Connecting to ROS...</div>
+    <script src="joystick.js"></script>
+</body>
+</html> 
